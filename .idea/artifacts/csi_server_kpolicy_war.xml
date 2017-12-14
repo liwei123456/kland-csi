@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="csi-server-kpolicy:war">
+    <output-path>$PROJECT_DIR$/csi-server-kpolicy/target</output-path>
+    <root id="archive" name="csi-server-kpolicy.war">
+      <element id="artifact" artifact-name="csi-server-kpolicy:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <beans:bean id="digestFilter" class="org.springframework.security.web.authentication.www.DigestAuthenticationFilter">
+        <beans:property name="userDetailsService" ref="jdbcDaoImpl"/>
+        <beans:property name="authenticationEntryPoint" ref="digestEntryPoint"/>
+    </beans:bean>
+
+    <beans:bean id="digestEntryPoint" class=
+            "org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint">
+        <beans:property name="realmName" value="Kland Public Sentiment Remote Services"/>
+        <beans:property name="key" value="publish"/>
+        <beans:property name="nonceValiditySeconds" value="300"/>
+    </beans:bean>
+
+    <beans:bean id="jdbcDaoImpl" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="systemDataSource"/>
+        <beans:property name="enableGroups" value="true"/>
+    </beans:bean>
+
+    <http use-expressions="true" entry-point-ref="digestEntryPoint">
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+        <custom-filter ref="digestFilter" after="BASIC_AUTH_FILTER" />
+    </http>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref='jdbcDaoImpl'/>
+    </authentication-manager>
+
+</beans:beans>

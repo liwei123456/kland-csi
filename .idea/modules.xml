@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/csi-api/csi-api.iml" filepath="$PROJECT_DIR$/csi-api/csi-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csi-core/csi-core.iml" filepath="$PROJECT_DIR$/csi-core/csi-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/csi-server-kpolicy/csi-server-kpolicy.iml" filepath="$PROJECT_DIR$/csi-server-kpolicy/csi-server-kpolicy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kland-csi.iml" filepath="$PROJECT_DIR$/kland-csi.iml" />
+    </modules>
+  </component>
+</project>
+

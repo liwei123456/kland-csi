@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- enable autowire -->
+    <context:annotation-config />
+
+    <context:property-placeholder location="classpath:application-settings.properties" />
+
+    <import resource="database-definition.xml"/>
+    <import resource="csi-core.xml"/>
+    <!--<import resource="spring-security-definition.xml"/>-->
+
+    <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrClient">
+        <constructor-arg value="${solr.url}" />
+    </bean>
+
+    <bean id="authenticationService" class="com.kland.csi.api.identity.impl.AuthenticationServiceImpl"/>
+    <bean id="documentService" class="com.kland.csi.api.research.impl.DocumentServiceImpl"/>
+    <bean id="treeService" class="com.kland.csi.api.Tree.impl.TreeServiceImpl"/>
+</beans>
